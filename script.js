@@ -1,5 +1,11 @@
 let fft
 
+let Particle = function (position) {
+  this.position = position
+  this.speed = createVector(0, 1)
+  this.color = [random(0, 255), random(0, 255), random(0, 255)]
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight)
   noStroke()
@@ -9,6 +15,8 @@ function setup() {
 
   fft = new p5.FFT()
   fft.setInput(mic)
+
+  positionParticles()
 }
 
 function draw() {}
