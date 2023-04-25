@@ -1,4 +1,5 @@
 let fft;
+let audio;
 
 let Particle = function (position) {
   this.position = position;
@@ -48,18 +49,28 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
 
-  let mic = new p5.AudioIn();
-  mic.start();
+  let fileInput = createFileInput(handleFile);
+  fileInput.position(10, 10);
 
   fft = new p5.FFT();
-  fft.setInput(mic);
+}
 
-  positionParticles();
+function handleFile(file) {
+  if (file.type === "audio") {
+    audio = loadSound(file.data, function () {
+      audio.play();
+    });
+    fft.setInput(audio);
+    positionParticles();
+  } else {
+    console.log("Upload some .mp3 music to get started!");
+  }
 }
 
 function draw() {
   background(0, 0, 0);
-  let spectrum = fft.analyze();
-  updateParticles(spectrum);
+  if (audio && audio.isPlaying()) {
+    let spectrum = fft.analyze();
+    updateParticles(spectrum);
+  }
 }
-
