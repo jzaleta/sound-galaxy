@@ -1,5 +1,8 @@
 let fft;
 let audio;
+let playButton;
+let pauseButton;
+let isPlaying = false;
 
 let Particle = function (position) {
   this.position = position;
@@ -52,6 +55,14 @@ function setup() {
   let fileInput = createFileInput(handleFile);
   fileInput.position(10, 10);
 
+  playButton = createButton("Play");
+  playButton.position(10, 40);
+  playButton.mousePressed(playAudio);
+
+  pauseButton = createButton("Pause");
+  pauseButton.position(60, 40);
+  pauseButton.mousePressed(pauseAudio);
+
   fft = new p5.FFT();
 }
 
@@ -59,6 +70,9 @@ function handleFile(file) {
   if (file.type === "audio") {
     audio = loadSound(file.data, function () {
       audio.play();
+      isPlaying = true;
+      playButton.attribute("disabled", "");
+      pauseButton.removeAttribute("disabled");
     });
     fft.setInput(audio);
     positionParticles();
@@ -67,9 +81,27 @@ function handleFile(file) {
   }
 }
 
+function playAudio() {
+  if (audio && !isPlaying) {
+    audio.play();
+    isPlaying = true;
+    playButton.attribute("disabled", "");
+    pauseButton.removeAttribute("disabled");
+  }
+}
+
+function pauseAudio() {
+  if (audio && isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    pauseButton.attribute("disabled", "");
+    playButton.removeAttribute("disabled");
+  }
+}
+
 function draw() {
   background(0, 0, 0);
-  if (audio && audio.isPlaying()) {
+  if (audio && isPlaying) {
     let spectrum = fft.analyze();
     updateParticles(spectrum);
   }
