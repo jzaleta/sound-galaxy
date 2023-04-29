@@ -9,6 +9,8 @@ Visualize sound by making particles move in a galaxy.
 
 ## About
 
+[Sound Galaxy](https://sound-galaxy.vercel.app/) is a small `.mp3` music visualizer created with HTML and JavaScript with the `P5.js` library.
+
 ![](assets/sound-galaxy.png)
 
 ## Motivations
