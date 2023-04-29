@@ -5,8 +5,11 @@
 ![GitHub license](https://img.shields.io/github/license/j-cordz/sound-galaxy)
 ![GitHub repo stars](https://img.shields.io/github/stars/j-cordz/sound-galaxy?style=social)
 
-## About
 Visualize sound by making particles move in a galaxy.
+
+## About
+
+![](assets/sound-galaxy.png)
 
 ## Motivations
 
