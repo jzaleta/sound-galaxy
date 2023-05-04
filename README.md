@@ -1,4 +1,4 @@
-# ```🎧``` Sound Galaxy
+# 🎧 Sound Galaxy
 
 ![GitHub top language](https://img.shields.io/github/languages/top/j-cordz/sound-galaxy?color=yellow)
 ![GitHub language count](https://img.shields.io/github/languages/count/j-cordz/sound-galaxy)
